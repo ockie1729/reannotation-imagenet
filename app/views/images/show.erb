@@ -1,0 +1,19 @@
+<div class="center jumbotron">
+  <div>
+    <%= image_tag(@image.url) %>
+  </div>
+  <div class="center buttons">
+    <%= button_to("cat",
+		  {controller: "images", action: "update"},
+		  class: "btn btn-lg btn-primary",
+		  label: "dog", image_id: @image.id) %>
+    <%= button_to("dog",
+		  {controller: "images", action: "update"},
+		  class: "btn btn-lg btn-primary",
+		  label: "cat", image_id: @image.id) %>
+    <%= button_to("can't tell",
+		  {controller: "images", action: "update"},
+		  class: "btn btn-lg btn-primary",
+		  label: "cant_tell", image_id: @image.id) %>
+  </div>
+</div>

@@ -7,4 +7,4 @@ test:
 production:
   adapter: redis
   url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
-  channel_prefix: imagenet_reannotation_production
+  channel_prefix: proto_reannotation_imagenet_production

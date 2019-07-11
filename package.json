@@ -1,5 +1,5 @@
 {
-  "name": "imagenet_reannotation",
+  "name": "proto_reannotation_imagenet",
   "private": true,
   "dependencies": {}
 }

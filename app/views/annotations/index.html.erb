@@ -1,0 +1,16 @@
+<table class="table">
+  <tr>
+    <td>id</td>
+    <td>path</td>
+    <td>label</td>
+    <td>timestamp</td>
+  </tr>
+  <% @annotations.each do |ann| %>
+  <tr>
+    <td><%= ann.id %></td>
+    <td><%= ann.image.url %></td>
+    <td><%= ann.label %></td>
+    <td><%= ann.updated_at %><td>
+  </tr>
+  <% end %>
+</table>
