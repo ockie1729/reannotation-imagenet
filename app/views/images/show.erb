@@ -4,16 +4,17 @@
   </div>
   <div class="center buttons">
     <%= button_to("cat",
-		  {controller: "images", action: "update"},
-		  class: "btn btn-lg btn-primary",
-		  label: "dog", image_id: @image.id) %>
+		  {controller: "images", action: "update",
+		   label: "dog", image_id: @image.id},
+		  class: "btn btn-lg btn-primary") %>
+
     <%= button_to("dog",
-		  {controller: "images", action: "update"},
-		  class: "btn btn-lg btn-primary",
-		  label: "cat", image_id: @image.id) %>
+		  {controller: "images", action: "update",
+		   label: "cat", image_id: @image.id},
+		  class: "btn btn-lg btn-primary") %>
     <%= button_to("can't tell",
-		  {controller: "images", action: "update"},
-		  class: "btn btn-lg btn-primary",
-		  label: "cant_tell", image_id: @image.id) %>
+		  {controller: "images", action: "update",
+		   label: "cant_tell", image_id: @image.id},
+		  class: "btn btn-lg btn-primary") %>
   </div>
 </div>
