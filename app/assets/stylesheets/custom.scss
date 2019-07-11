@@ -68,6 +68,24 @@ p {
   text-decoration: none;
 }
 
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+  float: center;
+}
+
+footer a {
+  color: #555;
+}
+
+footer a:hover {
+  color: #222;
+}
+
 /* task view */
 .buttons {
     width: 300px;
