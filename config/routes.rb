@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "images#new"
+
   get "images/new", to: "images#new"
   get "images/:id", to: "images#show"
   post "images/annotate", to: "images#update"
