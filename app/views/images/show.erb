@@ -5,12 +5,12 @@
   <div class="center buttons">
     <%= button_to("cat",
 		  {controller: "images", action: "update",
-		   label: "dog", image_id: @image.id},
+		   label: "cat", image_id: @image.id},
 		  class: "btn btn-lg btn-primary") %>
 
     <%= button_to("dog",
 		  {controller: "images", action: "update",
-		   label: "cat", image_id: @image.id},
+		   label: "dog", image_id: @image.id},
 		  class: "btn btn-lg btn-primary") %>
     <%= button_to("can't tell",
 		  {controller: "images", action: "update",
