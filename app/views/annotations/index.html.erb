@@ -3,6 +3,7 @@
     <td>id</td>
     <td>path</td>
     <td>label</td>
+    <td>username</td>
     <td>timestamp</td>
   </tr>
   <% @annotations.each do |ann| %>
@@ -10,7 +11,14 @@
     <td><%= ann.id %></td>
     <td><%= ann.image.url %></td>
     <td><%= ann.label %></td>
-    <td><%= ann.updated_at %><td>
+    <td>
+      <% if ann.user.nil? %>
+        null
+      <% else %>
+        <%= ann.user.name %>
+      <% end %>
+    </td>
+    <td><%= ann.updated_at %></td>
   </tr>
   <% end %>
 </table>

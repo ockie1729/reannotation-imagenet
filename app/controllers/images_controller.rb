@@ -11,7 +11,8 @@ class ImagesController < ApplicationController
   end
 
   def update
-    ann = Annotation.new(image_id: params[:image_id], label: params[:label])
+    ann = Annotation.new(image_id: params[:image_id], label: params[:label],
+			 user_id: current_user.id)
     ann.save! 
     redirect_to action: "new"
   end 
