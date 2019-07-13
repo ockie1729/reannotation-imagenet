@@ -1,4 +1,6 @@
 class ImagesController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     image = Image.includes(:annotations).where(annotations: {id: nil}).first
     redirect_to action: "show", id: image.id
