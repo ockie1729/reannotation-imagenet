@@ -3,8 +3,15 @@
     <%= link_to "ImageNet Reannotation", '/', id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Task",   '/images/new' %></li>
-        <li><%= link_to "Annotations", '/annotations' %></li>
+	<% if user_signed_in? %>
+	  <li><a href="#"><%= current_user.name %></a></li>
+          <li><%= link_to "Task", '/images/new' %></li>
+          <li><%= link_to "Annotations", '/annotations' %></li>
+	  <li><%= link_to "Log out", destroy_user_session_path, method: 'delete' %><li>
+	<% else %>
+	  <li><%= link_to "Log in", new_user_session_path, class: 'post' %></li>
+	  <li><%= link_to "Sign up", new_user_registration_path, class: 'post' %></li>
+	<% end %>
       </ul>
     </nav>
   </div>
