@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root "images#new"
 
   get "images/new", to: "images#new"
