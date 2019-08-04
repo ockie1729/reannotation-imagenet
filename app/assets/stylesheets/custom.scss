@@ -97,3 +97,24 @@ footer a:hover {
 .imagebox {
   height: 600px;
 }
+
+// masonry
+#gallery {
+    margin: 0 auto;
+    overflow: hidden;
+}
+ 
+#gallery li {
+    max-width: 300px;
+    padding: 0px;
+    margin: 10px;
+    list-style: none;
+    border: 5px solid;
+    border-color: transparent;
+}
+ 
+#gallery li img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}

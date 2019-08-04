@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   def new
     image = Image.includes(:annotations).where(annotations: {id: nil}).first
@@ -15,5 +15,14 @@ class ImagesController < ApplicationController
 			 user_id: current_user.id)
     ann.save! 
     redirect_to action: "new"
-  end 
+  end
+
+  def images_tile
+    @images = Image.all
+  end
+
+  def save_images_tile
+    p params["_json"]
+    render json: [true, {"status": "ok"}]
+  end
 end
