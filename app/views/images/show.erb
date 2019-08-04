@@ -6,15 +6,25 @@
     <%= button_to("cat",
 		  {controller: "images", action: "update",
 		   label: "cat", image_id: @image.id},
-		  class: "btn btn-lg btn-primary") %>
-
+		  class: "btn btn-lg btn-primary audio-button") %>
     <%= button_to("dog",
 		  {controller: "images", action: "update",
 		   label: "dog", image_id: @image.id},
-		  class: "btn btn-lg btn-primary") %>
+		  class: "btn btn-lg btn-primary audio-button") %>
     <%= button_to("can't tell",
 		  {controller: "images", action: "update",
 		   label: "cant_tell", image_id: @image.id},
-		  class: "btn btn-lg btn-primary") %>
+		  class: "btn btn-lg btn-primary audio-button") %>
   </div>
 </div>
+
+<%= audio_tag("button57.mp3", id: "audio") %>
+<%= javascript_tag do %>
+  document.querySelectorAll('.audio-button').forEach((item) => {
+     item.onclick = function () {
+       document.querySelector('#audio').play();
+     }
+  });
+<% end %>
+    
+
