@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_05_171804) do
+ActiveRecord::Schema.define(version: 2019_08_05_175000) do
 
   create_table "annotations", force: :cascade do |t|
     t.integer "image_id"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2019_08_05_171804) do
   end
 
   create_table "image_classes", force: :cascade do |t|
-    t.boolean "annotated"
+    t.boolean "annotated", default: false, null: false
     t.integer "team_id"
     t.string "tag"
     t.string "reference_page_url"
