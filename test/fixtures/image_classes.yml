@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  annotated: false
+  team: one
+  tag: MyString
+  reference_page_url: MyString
+
+two:
+  annotated: false
+  team: two
+  tag: MyString
+  reference_page_url: MyString
