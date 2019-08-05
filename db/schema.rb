@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_13_074537) do
+ActiveRecord::Schema.define(version: 2019_08_05_171804) do
 
   create_table "annotations", force: :cascade do |t|
     t.integer "image_id"
@@ -22,9 +22,29 @@ ActiveRecord::Schema.define(version: 2019_07_13_074537) do
     t.index ["user_id"], name: "index_annotations_on_user_id"
   end
 
+  create_table "image_classes", force: :cascade do |t|
+    t.boolean "annotated"
+    t.integer "team_id"
+    t.string "tag"
+    t.string "reference_page_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_image_classes_on_team_id"
+  end
+
   create_table "images", force: :cascade do |t|
     t.string "url"
     t.boolean "annotated", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "cluster_no"
+    t.string "fname"
+    t.integer "image_class_id"
+    t.index ["image_class_id"], name: "index_images_on_image_class_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,8 +58,10 @@ ActiveRecord::Schema.define(version: 2019_07_13_074537) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", default: "", null: false
+    t.integer "team_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["team_id"], name: "index_users_on_team_id"
   end
 
 end
