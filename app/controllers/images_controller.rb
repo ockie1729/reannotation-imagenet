@@ -18,11 +18,82 @@ class ImagesController < ApplicationController
   end
 
   def images_tile
-    @images = Image.all
+     if current_user.nil?
+       redirect_to "/users/sign_in"
+       return
+     end
+
+     if current_user.team_user.nil?
+       redirect_to "/static_pages/index"
+       return
+     end
+
+    image_class = current_user.team_user.team.image_classes.order(:id).
+                    where(annotated: false).first
+    @images = image_class.images  # FIXME N+1かも
   end
 
   def save_images_tile
-    p params["_json"]
+    user = User.find_by(email: params["user_email"])
+
+    if user.nil?
+      p "error"  # FIXME
+    end
+    
+    # save annotation
+    annotations = []
+    labels_data = params["labels_data"]
+    labels_data.each do |data|
+      image_id = data["image_id"].to_i
+      label = data["label"].to_i
+
+      annotations << Annotation.new(image_id: image_id,
+                                    label: label,
+                                    user_id: user.id)
+    end
+    Annotation.import annotations
+
+    # dump log
+    log_data_json = {"user_email": user.email,
+                     "action": "save_images_tile",
+                     "log": params["log_data"].as_json()}
+    Rails.application.config.annotation_logger.info(log_data_json)
+
+    render json: [true, {"status": "ok"}]
+  end
+
+  def commit_images_tile
+    user = User.find_by(email: params["user_email"])
+
+    # TODO userがnilのときの異常処理
+    
+    # save annotation
+    annotations = []
+    labels_data = params["labels_data"]
+    labels_data.each do |data|
+      image_id = data["image_id"].to_i
+      label = data["label"].to_i
+
+      annotations << Annotation.new(image_id: image_id,
+                                    label: label,
+                                    user_id: user.id)
+    end
+    Annotation.import annotations
+
+    # dump log
+    log_data_json = {"user_email": user.email,
+                     "action": "save_images_tile",
+                     "log": params["log_data"].as_json()}
+    Rails.application.config.annotation_logger.info(log_data_json)
+
+    
+    # クラスを確定する処理
+    image_class = user.team_user.team.image_classes.order(:id).
+                    where(annotated: false).first
+
+    image_class.annotated = true
+    image_class.save!
+
     render json: [true, {"status": "ok"}]
   end
 end

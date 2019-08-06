@@ -41,6 +41,8 @@ gem 'jquery-rails'
 gem 'imagesLoaded_rails'
 gem 'masonry-rails'
 
+gem 'activerecord-import'
+
 group :production do
   gem 'pg'
 end
