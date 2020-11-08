@@ -42,10 +42,14 @@ TeamUser.create!(user: user4,
 # 予めクラスのタイプを見て，チームを割振っておく
 puts "saving image class..."
 
+# image_class_tags = [
+#   ["n01440764", Team.first],
+#   ["n01443537", Team.first],
+#   ["n01484850", Team.second]
+# ]
 image_class_tags = [
-  ["n01440764", Team.first],
-  ["n01443537", Team.first],
-  ["n01484850", Team.second]
+  ["cat", Team.first],
+  ["dog", Team.second],
 ]
 
 image_classes = []
@@ -58,22 +62,42 @@ image_class_tags.each_with_index do |item, i|
   image_classes.push(image_class)
 end
 
+# TODO まずはcats_and_dogsの画像を表示
+
+# ILSVRC2012の画像の表示は一旦コメントアウト
+# # Image
+# fnames_line = []
+# File.open('db/images.list') { |f|
+#   f.each_line do |line|
+#     fnames_line.push(line.chomp)
+#   end
+# }
+
+# # TODO クラスタ番号も振っておきたい
+# puts "saving images..."
+# fnames_line.each do |line|
+#   class_id_str, class_tag, fname = line.split(",")
+  
+#   Image.create!({url: "/ILSVRC2012_train/#{class_tag}/#{fname}",
+#                 # cluster_no: 1,
+#                 fname: fname,
+#                 image_class_id: image_classes[class_id_str.to_i - 1].id})
+# end
+
 
 # Image
 fnames_line = []
-File.open('db/images.list') { |f|
+File.open('db/cats_and_dogs_selected.list') { |f|
   f.each_line do |line|
     fnames_line.push(line.chomp)
   end
 }
 
-# クラスタ番号も振っておきたい
 puts "saving images..."
 fnames_line.each do |line|
-  class_id_str, class_tag, fname = line.split(",")
-  
-  Image.create!({url: "/ILSVRC2012_train/#{class_tag}/#{fname}",
-                # cluster_no: 1,
+  class_id_str, fname = line.split(",")
+
+  Image.create!({url: "/cats_and_dogs/#{fname}",
                 fname: fname,
                 image_class_id: image_classes[class_id_str.to_i - 1].id})
 end
