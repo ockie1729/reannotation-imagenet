@@ -28,9 +28,9 @@ class ImagesController < ApplicationController
        return
      end
 
-    image_class = current_user.team_user.team.image_classes.order(:id).
+    image_cluster = current_user.team_user.team.image_clusters.order(:id).
                     where(annotated: false).first
-    @images = image_class.images  # FIXME N+1かも
+    @images = image_cluster.images  # FIXME N+1かも
   end
 
   def save_images_tile

@@ -48,8 +48,8 @@ puts "saving image class..."
 #   ["n01484850", Team.second]
 # ]
 image_class_tags = [
-  ["cat", Team.first],
-  ["dog", Team.second],
+  ["cat", Team.second],
+  ["dog", Team.first],
 ]
 
 image_classes = []
@@ -60,6 +60,18 @@ image_class_tags.each_with_index do |item, i|
                                 team_id: item[1].id})
   image_class.save!
   image_classes.push(image_class)
+end
+
+# Image Cluster
+image_clusters = [2, 2, 1, 1]
+
+debugger
+
+image_clusters.each_with_index do |image_class_id, i|
+  image_cluster = ImageCluster.new({id: i+1,
+                                    team: ImageClass.find(image_class_id).team,
+                                    image_class_id: image_class_id})
+  image_cluster.save!
 end
 
 # TODO まずはcats_and_dogsの画像を表示
@@ -95,9 +107,10 @@ File.open('db/cats_and_dogs_selected.list') { |f|
 
 puts "saving images..."
 fnames_line.each do |line|
-  class_id_str, fname = line.split(",")
+  class_id_str, cluster_id_str, fname = line.split(",")
 
   Image.create!({url: "/cats_and_dogs/#{fname}",
-                fname: fname,
-                image_class_id: image_classes[class_id_str.to_i - 1].id})
+                 fname: fname,
+                 image_class_id: image_classes[class_id_str.to_i - 1].id,
+                 image_cluster_id: cluster_id_str.to_i})
 end
