@@ -47,17 +47,13 @@ puts "saving image class..."
 #   ["n01443537", Team.first],
 #   ["n01484850", Team.second]
 # ]
-image_class_tags = [
-  ["cat", Team.second],
-  ["dog", Team.first],
-]
+image_class_tags = ["cat", "dog"]
 
 image_classes = []
 
-image_class_tags.each_with_index do |item, i|
+image_class_tags.each_with_index do |tag, i|
   image_class = ImageClass.new({id: i+1,
-                                tag: item[0],
-                                team_id: item[1].id})
+                                tag: tag})
   image_class.save!
   image_classes.push(image_class)
 end
@@ -65,11 +61,8 @@ end
 # Image Cluster
 image_clusters = [2, 2, 1, 1]
 
-debugger
-
 image_clusters.each_with_index do |image_class_id, i|
   image_cluster = ImageCluster.new({id: i+1,
-                                    team: ImageClass.find(image_class_id).team,
                                     image_class_id: image_class_id})
   image_cluster.save!
 end

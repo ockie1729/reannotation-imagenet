@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'static_pages/index'
+  get 'static_pages/finished'
   devise_for :users
 
   root "images#images_tile"

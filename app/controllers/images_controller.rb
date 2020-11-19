@@ -28,8 +28,17 @@ class ImagesController < ApplicationController
        return
      end
 
-    image_cluster = current_user.team_user.team.image_clusters.order(:id).
-                    where(annotated: false).first
+    image_cluster = ImageCluster.find_by(assigned: false, annotated: false)
+
+    if image_cluster.nil?
+      redirect_to controller: :static_pages, action: :finished
+      return
+    end
+
+    image_cluster.assigned = true
+    image_cluster.team = current_user.team_user.team
+    image_cluster.save!
+
     @images = image_cluster.images  # FIXME N+1かも
   end
 

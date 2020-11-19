@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_18_144928) do
+ActiveRecord::Schema.define(version: 2020_11_19_141201) do
 
   create_table "annotations", force: :cascade do |t|
     t.integer "image_id"
@@ -23,13 +23,10 @@ ActiveRecord::Schema.define(version: 2020_11_18_144928) do
   end
 
   create_table "image_classes", force: :cascade do |t|
-    t.boolean "annotated", default: false, null: false
-    t.integer "team_id"
     t.string "tag"
     t.string "reference_page_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["team_id"], name: "index_image_classes_on_team_id"
   end
 
   create_table "image_clusters", force: :cascade do |t|
@@ -50,7 +47,6 @@ ActiveRecord::Schema.define(version: 2020_11_18_144928) do
     t.boolean "annotated", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "cluster_no"
     t.string "fname"
     t.integer "image_class_id"
     t.integer "image_cluster_id"
