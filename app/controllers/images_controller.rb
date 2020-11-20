@@ -96,12 +96,7 @@ class ImagesController < ApplicationController
     Rails.application.config.annotation_logger.info(log_data_json)
 
     
-    # クラスを確定する処理
-    image_class = user.team_user.team.image_classes.order(:id).
-                    where(annotated: false).first
-
-    image_class.annotated = true
-    image_class.save!
+    # TODO 確定する処理
 
     render json: [true, {"status": "ok"}]
   end
