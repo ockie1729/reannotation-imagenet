@@ -40,7 +40,7 @@ class ImagesController < ApplicationController
     image_cluster.team = current_user.team_user.team
     image_cluster.save!
 
-    @images = image_cluster.images  # FIXME N+1かも
+    @image_cluster = ImageCluster.includes(:images).find(image_cluster.id)
   end
 
   def save_images_tile
@@ -63,6 +63,10 @@ class ImagesController < ApplicationController
                                     user_id: user.id)
     end
     Annotation.import annotations
+
+    image_cluster = ImageCluster.find(params["image_cluster_id"])  # FIXME エラー処理
+    image_cluster.annotated = true
+    image_cluster.save!
 
     # dump log
     log_data_json = {"user_email": user.email,

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   post "images/annotate", to: "images#update"
   post "images/tiles/decide", to: "images#commit_images_tile"
-  post "images/tiles", to: "images#save_images_tile"
+  post "images/tiles/image_clusters/:image_cluster_id", to: "images#save_images_tile"
 
   get "annotations", to: "annotations#index"
 

@@ -12,11 +12,12 @@
 
 <div class="center jumbotron">
   <ul id="gallery">
-    <% @images.each do |image| %>
+    <% @image_cluster.images.each do |image| %>
     <li class="image-item" id="image-<%= image.id %>"><%= image_tag(image.url) %></li>
     <% end %>
   </ul>
 </div>
 
-<div id="user-info-storage" data-user-email='<%= current_user.email %>'><div>
+<div id="user-info-storage" data-user-email='<%= current_user.email %>'></div>
+<div id="image-cluster-info-storage" data-image-cluster='<%= @image_cluster.id %>'></div>
 <div id="log-storage" data-log='[]'></div>

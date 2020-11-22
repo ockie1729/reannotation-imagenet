@@ -109,9 +109,10 @@ $(function(){
 		     "user_email":user_email};
 
     // 通信実行
+    var url = "/images/tiles/image_clusters/" + $("#image-cluster-info-storage").data('image-cluster');
     $.ajax({
       type:"post",                // method = "POST"
-      url:"/images/tiles",        // POST送信先のURL
+      url: url,        // POST送信先のURL
       data:JSON.stringify(send_data),  // JSONデータ本体
       contentType: 'application/json', // リクエストの Content-Type
       dataType: "json",           // レスポンスをJSONとしてパースする
