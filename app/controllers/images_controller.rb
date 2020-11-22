@@ -69,10 +69,10 @@ class ImagesController < ApplicationController
     image_cluster.save!
 
     # dump log
-    log_data_json = {"user_email": user.email,
-                     "action": "save_images_tile",
-                     "log": params["log_data"].as_json()}
-    Rails.application.config.annotation_logger.info(log_data_json)
+    #log_data_json = {"user_email": user.email,
+    #                 "action": "save_images_tile",
+    #                 "log": params["log_data"].as_json()}
+    #Rails.application.config.annotation_logger.info(log_data_json)  # FIXME 一時的に止める
 
     render json: [true, {"status": "ok"}]
   end
