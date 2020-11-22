@@ -28,7 +28,8 @@ class ImagesController < ApplicationController
        return
      end
 
-    image_cluster = ImageCluster.find_by(assigned: false, annotated: false)
+    #image_cluster = ImageCluster.find_by(assigned: false, annotated: false)
+    image_cluster = ImageCluster.find_by(annotated: false)
 
     if image_cluster.nil?
       redirect_to controller: :static_pages, action: :finished

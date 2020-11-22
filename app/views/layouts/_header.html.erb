@@ -5,8 +5,9 @@
       <ul class="nav navbar-nav navbar-right">
 	<% if user_signed_in? %>
 	  <li><a href="#"><%= current_user.name %></a></li>
-          <li><%= link_to "Task", '/images/new' %></li>
+          <li><%= link_to "Task", '/images/tiles' %></li>
           <li><%= link_to "Annotations", '/annotations' %></li>
+          <li><%= link_to "Leader Board", '/leaderboard' %></li>
 	  <li><%= link_to "Log out", destroy_user_session_path, method: 'delete' %><li>
 	<% else %>
 	  <li><%= link_to "Log in", new_user_session_path, class: 'post' %></li>

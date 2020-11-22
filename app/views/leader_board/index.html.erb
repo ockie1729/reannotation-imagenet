@@ -1,0 +1,15 @@
+<h1>LeaderBoard#index</h1>
+
+<table class="table">
+  <tr>
+    <th>rank</th>
+    <th>user name</th>
+    <th>annotation count</th>
+  </tr>
+  <% @users.each_with_index do |user, i| %>
+  <tr>
+    <td><%= i+1 %></td>
+    <td><%= user.name %></td>
+    <td><%= user.count_annotations_id %></td>
+  </tr>
+<% end %>
