@@ -49,12 +49,13 @@ class ImagesController < ApplicationController
     if user.nil?
       p "error"  # FIXME
     end
-    
+
     # save annotation
     annotations = []
     labels_data = params["labels_data"]
     labels_data.each do |data|
-      image_id = data["image_id"].to_i
+
+      image_id = data["image_id"].split("-")[1].to_i
       label = data["label"].to_i
 
       annotations << Annotation.new(image_id: image_id,

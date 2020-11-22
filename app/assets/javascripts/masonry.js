@@ -13,7 +13,7 @@ $(function(){
   });
 
   // labelの値の初期設定
-  $('#label-area').data("current_label", 0);
+  $('#label-area').data("current_label", 1);
   $('#label-area').data('border_color', 'blue');
 
   /*
@@ -89,10 +89,12 @@ $(function(){
       var label = $(elem).data("label");
       var image_id = $(elem).attr("id");
 
-      if (label != undefined && label != 0) {
-	labels_data.push({"image_id": image_id,
-			  "label": label});
+      if (label === undefined) {
+        label = 0;
       }
+
+	  labels_data.push({"image_id": image_id,
+                        "label": label});
     });
     // ログデータ
     var log_data = $("#log-storage").data("log");
