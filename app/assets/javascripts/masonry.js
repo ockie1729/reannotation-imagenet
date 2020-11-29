@@ -27,7 +27,6 @@ $(function(){
 
 
     // 同じ色で画像を二回クリックしたら，色を元に戻す
-    console.log($(this).data("label"));
     if ($(this).data('label') == current_label) {
       $(this).css("border-color", "transparent");
       $(this).data("label", 0);
@@ -35,7 +34,6 @@ $(function(){
       $(this).css("border-color", border_color);
       $(this).data('label', current_label);
     }
-
     // 操作をログ
     var log_arr = $("#log-storage").data('log');
     log_arr.push({"time": (new Date()).getTime(),
@@ -76,6 +74,7 @@ $(function(){
     var button = $(this);
     button.attr("disabled", true);
 
+
     // 操作をログ
     var log_arr = $("#log-storage").data('log');
     log_arr.push({"time": (new Date()).getTime(),
@@ -101,8 +100,6 @@ $(function(){
 
     // ユーザー情報
     var user_email = $('#user-info-storage').data('user-email');
-    console.log("log data");
-    console.log(log_data);
     
     var send_data = {"labels_data":labels_data,
 		     "log_data":log_data,
@@ -117,7 +114,6 @@ $(function(){
       contentType: 'application/json', // リクエストの Content-Type
       dataType: "json",           // レスポンスをJSONとしてパースする
       success: function(json_data) {   // 200 OK時
-	console.log(json_data);
         // JSON Arrayの先頭が成功フラグ、失敗の場合2番目がエラーメッセージ
         if (!json_data[0]) {    // サーバが失敗を返した場合
           alert("Transaction error. " + json_data[1]);
@@ -166,8 +162,6 @@ $(function(){
 
     // ユーザー情報
     var user_email = $('#user-info-storage').data('user-email');
-    console.log("log data");
-    console.log(log_data);
     
     var send_data = {"labels_data":labels_data,
 		     "log_data":log_data,
@@ -181,7 +175,6 @@ $(function(){
       contentType: 'application/json', // リクエストの Content-Type
       dataType: "json",           // レスポンスをJSONとしてパースする
       success: function(json_data) {   // 200 OK時
-	console.log(json_data);
         // JSON Arrayの先頭が成功フラグ、失敗の場合2番目がエラーメッセージ
         if (!json_data[0]) {    // サーバが失敗を返した場合
           alert("Transaction error. " + json_data[1]);
