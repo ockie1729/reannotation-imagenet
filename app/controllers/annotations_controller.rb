@@ -1,5 +1,7 @@
 class AnnotationsController < ApplicationController
-  before_action :authenticate_user!
+  include Common
+
+  before_action :check_sign_in
 
   def index
     @annotations = Annotation.includes(:image, :user).

@@ -1,5 +1,8 @@
 class ImagesController < ApplicationController
-  # before_action :authenticate_user!
+  include Common
+
+  before_action :check_sign_in, only: [:images_tile]
+
 
   def new
     image = Image.includes(:annotations).where(annotations: {id: nil}).first
@@ -18,16 +21,6 @@ class ImagesController < ApplicationController
   end
 
   def images_tile
-     if current_user.nil?
-       redirect_to "/users/sign_in"
-       return
-     end
-
-     if current_user.team_user.nil?
-       redirect_to "/static_pages/index"
-       return
-     end
-
     #image_cluster = ImageCluster.find_by(assigned: false, annotated: false)  # TODO 時間がたったらassinedを消すようにしたら修正
     image_cluster = ImageCluster.find_by(annotated: false)
 
