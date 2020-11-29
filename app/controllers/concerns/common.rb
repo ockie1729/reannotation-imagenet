@@ -14,8 +14,15 @@ module Common
   end
 
   def check_competition_running
-    # FIXME 開始しているコンペが無いときのみリダイレクトするよう修正
-    if Time.current.to_a[1] % 2 == 0
+    running_competition = Competition.
+                            where(finished: nil).
+                            where('starts_at > ?', Time.current).
+                            order('starts_at').
+                            first
+
+    if running_competition.nil? or
+      (running_competition.starts_at < Time.current or
+       running_competition.ends_at >= Time.current)
       redirect_to "/entrance_page/index"
     end
   end

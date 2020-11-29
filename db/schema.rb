@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_19_141201) do
+ActiveRecord::Schema.define(version: 2020_11_29_062803) do
 
   create_table "annotations", force: :cascade do |t|
     t.integer "image_id"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2020_11_19_141201) do
     t.integer "user_id"
     t.index ["image_id"], name: "index_annotations_on_image_id"
     t.index ["user_id"], name: "index_annotations_on_user_id"
+  end
+
+  create_table "competitions", force: :cascade do |t|
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.string "title"
+    t.text "text"
+    t.boolean "finished"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "image_classes", force: :cascade do |t|
