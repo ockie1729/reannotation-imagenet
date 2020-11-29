@@ -1,3 +1,7 @@
+# 2020-11-29
+#
+# ILSVRC2012 trainの最後の二クラスを登録
+
 # Team
 puts "saving teams..."
 
@@ -38,16 +42,9 @@ TeamUser.create!(user: user4,
                  team: Team.second)
 
 # ImageClass
-# これは予め出来る
-# 予めクラスのタイプを見て，チームを割振っておく
 puts "saving image class..."
 
-# image_class_tags = [
-#   ["n01440764", Team.first],
-#   ["n01443537", Team.first],
-#   ["n01484850", Team.second]
-# ]
-image_class_tags = ["cat", "dog"]
+image_class_tags = ["n13133613", "n15075141"]
 
 image_classes = []
 
@@ -59,40 +56,23 @@ image_class_tags.each_with_index do |tag, i|
 end
 
 # Image Cluster
-image_clusters = [2, 2, 1, 1]
+puts "saving image cluster..."
 
-image_clusters.each_with_index do |image_class_id, i|
-  image_cluster = ImageCluster.new({id: i+1,
-                                    image_class_id: image_class_id})
+# class1に紐づくものを99作る
+99.times do
+  image_cluster = ImageCluster.new({image_class_id: 1})
   image_cluster.save!
 end
 
-# TODO まずはcats_and_dogsの画像を表示
-
-# ILSVRC2012の画像の表示は一旦コメントアウト
-# # Image
-# fnames_line = []
-# File.open('db/images.list') { |f|
-#   f.each_line do |line|
-#     fnames_line.push(line.chomp)
-#   end
-# }
-
-# # TODO クラスタ番号も振っておきたい
-# puts "saving images..."
-# fnames_line.each do |line|
-#   class_id_str, class_tag, fname = line.split(",")
-  
-#   Image.create!({url: "/ILSVRC2012_train/#{class_tag}/#{fname}",
-#                 # cluster_no: 1,
-#                 fname: fname,
-#                 image_class_id: image_classes[class_id_str.to_i - 1].id})
-# end
-
+# class2に紐づくものを260作る
+260.times do
+  image_cluster = ImageCluster.new({image_class_id: 2})
+  image_cluster.save!  
+end
 
 # Image
 fnames_line = []
-File.open('db/cats_and_dogs_selected.list') { |f|
+File.open('db/ILSVRC2012_train_last_2_classes.list') { |f|
   f.each_line do |line|
     fnames_line.push(line.chomp)
   end
@@ -100,10 +80,10 @@ File.open('db/cats_and_dogs_selected.list') { |f|
 
 puts "saving images..."
 fnames_line.each do |line|
-  class_id_str, cluster_id_str, fname = line.split(",")
+  class_id_str, cluster_id_str, url = line.split(",")
 
-  Image.create!({url: "/cats_and_dogs/#{fname}",
-                 fname: fname,
-                 image_class_id: image_classes[class_id_str.to_i - 1].id,
+  Image.create!({url: url,
+                 fname: url.split("/").last,
+                 image_class_id: class_id_str.to_i,
                  image_cluster_id: cluster_id_str.to_i})
 end
