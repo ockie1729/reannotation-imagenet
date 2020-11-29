@@ -16,13 +16,11 @@ module Common
   def check_competition_running
     running_competition = Competition.
                             where(finished: nil).
-                            where('starts_at > ?', Time.current).
-                            order('starts_at').
+                            where('starts_at <= ?', Time.current).
+                            where('ends_at > ?', Time.current).
                             first
 
-    if running_competition.nil? or
-      (running_competition.starts_at < Time.current or
-       running_competition.ends_at >= Time.current)
+    if running_competition.nil?
       redirect_to "/entrance_page/index"
     end
   end

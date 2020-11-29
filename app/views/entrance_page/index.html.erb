@@ -2,6 +2,6 @@
 <% if @running_competition.nil? %>
   <p>現在，開催予定のコンペティションはありません．</p>
 <% else %>
-  <p>次回コンペ「<%= @running_competition.title %>」は，<%= @running_competition.starts_at %>開始です</p>
+  <p>次回コンペ「<%= @next_competition.title %>」は，<%= @next_competition.starts_at %>開始です</p>
   <p><%= link_to("コンペページに移動", root_path) %></p>
 <% end %>
