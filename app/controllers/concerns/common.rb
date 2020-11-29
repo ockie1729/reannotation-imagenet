@@ -12,4 +12,11 @@ module Common
        return
      end
   end
+
+  def check_competition_running
+    # FIXME 開始しているコンペが無いときのみリダイレクトするよう修正
+    if Time.current.to_a[1] % 2 == 0
+      redirect_to "/entrance_page/index"
+    end
+  end
 end

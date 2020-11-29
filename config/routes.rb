@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'entrance_page/index'
   get 'static_pages/index'
   get 'static_pages/finished'
   devise_for :users

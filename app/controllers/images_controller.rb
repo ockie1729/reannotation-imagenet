@@ -2,6 +2,7 @@ class ImagesController < ApplicationController
   include Common
 
   before_action :check_sign_in, only: [:images_tile]
+  before_action :check_competition_running, only: [:images_tile]
 
 
   def new
