@@ -28,7 +28,7 @@ class ImagesController < ApplicationController
        return
      end
 
-    #image_cluster = ImageCluster.find_by(assigned: false, annotated: false)
+    #image_cluster = ImageCluster.find_by(assigned: false, annotated: false)  # TODO 時間がたったらassinedを消すようにしたら修正
     image_cluster = ImageCluster.find_by(annotated: false)
 
     if image_cluster.nil?
