@@ -1,7 +1,10 @@
 <h1>EntrancePage</h1>
+<div>
 <% if @next_competition.nil? %>
   <p>現在，開催予定のコンペティションはありません．</p>
 <% else %>
   <p>次回コンペ「<%= @next_competition.title %>」は，<%= @next_competition.starts_at %> 開始です</p>
   <p><%= link_to("コンペページに移動", root_path) %></p>
 <% end %>
+</div>
+<div id="entrance_msg"></div>
