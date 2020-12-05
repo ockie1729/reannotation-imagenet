@@ -2,10 +2,13 @@ function showImageTilePageTimer() {
   var nowTime = new Date();
   var endsAt = new Date($('#timer').data('competition_ends_at'));
 
-  console.log(endsAt.toLocaleString());
-
   var remainingTime = Math.floor((endsAt - nowTime)/1000);
-  
+
+  // コンペが終わっていたら，ページを再読込
+  if (remainingTime < 0) {
+      location.reload();
+  }
+
   var hours = Math.floor(remainingTime/3600);
   var minutes = Math.floor((remainingTime-hours*3600)/60);
   var seconds = remainingTime - hours*3600 - minutes*60;
