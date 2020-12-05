@@ -8,8 +8,6 @@ class EntrancePageController < ApplicationController
                             where('ends_at > ?', Time.current).
                             first
 
-    p running_competition
-
     if running_competition
       redirect_to root_path
     end
