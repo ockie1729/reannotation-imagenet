@@ -2,44 +2,27 @@
 #
 # ILSVRC2012 trainの最後の二クラスを登録
 
-# Team
-puts "saving teams..."
-
-5.times do
-  Team.create!()
-end
-
 # User
 puts "saving users..."
 user1 = User.new(name: "kataoka-san",
                  email: "kataoka@cv.com",
                  password: "password")
 user1.save!
-TeamUser.create!(user: user1,
-                 team: Team.first)
-
 
 user2 = User.new(name: "ryota-sensei",
                  email: "ryota@cv.com",
                  password: "password")
 user2.save!
-TeamUser.create!(user: user2,
-                 team: Team.first)
-
 
 user3 = User.new(name: "okimoto",
                  email: "okimoto@cv.com",
                  password: "password")
 user3.save!
-TeamUser.create!(user: user3,
-                 team: Team.second)
 
 user4 = User.new(name: "saeki",
                  email: "saeki@cv.com",
                  password: "password")
 user2.save!
-TeamUser.create!(user: user4,
-                 team: Team.second)
 
 # ImageClass
 puts "saving image class..."
