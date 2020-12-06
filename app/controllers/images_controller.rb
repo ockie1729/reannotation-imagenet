@@ -31,7 +31,6 @@ class ImagesController < ApplicationController
     end
 
     image_cluster.assigned = true
-    image_cluster.team = current_user.team_user.team
     image_cluster.save!
 
     @image_cluster = ImageCluster.includes(:images).find(image_cluster.id)

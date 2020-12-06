@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
+  root "images#images_tile"
+
+  devise_for :users
+
   get 'competitions/running'
   get 'competitions/next'
 
   get 'entrance_page/index'
 
-  get 'static_pages/index'
   get 'static_pages/finished'
-  devise_for :users
-
-  root "images#images_tile"
 
   get "images/new", to: "images#new"
   get "images/tiles", to: "images#images_tile"
