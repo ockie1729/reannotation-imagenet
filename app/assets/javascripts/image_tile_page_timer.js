@@ -18,8 +18,7 @@ function showImageTilePageTimer() {
 }
 setInterval('showImageTilePageTimer()', 500);
 
-$('#timer').ready(function() {
-
+var fetchRunningCompetitionInfo = function() {
     $.ajax({
       type: "get",
       url: "/competitions/running",
@@ -36,3 +35,12 @@ $('#timer').ready(function() {
       }
     });
 });
+
+if (
+  document.readyState === "complete" ||
+  (document.readyState !== "loading" && !document.documentElement.doScroll)
+) {
+  fetchRunningCompetitionInfo();
+} else {
+  document.addEventListener("DOMComtentLoaded", fetchRunningCompetitionInfo);
+}
