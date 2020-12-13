@@ -1,4 +1,9 @@
 class EntrancePageController < ApplicationController
+  include Common
+
+  before_action :check_sign_in
+
+
   def index
     # 開催中のコンペがあったら，コンペページに遷移
     # 注意: ここの条件をミスると，コンペページとここのあいだを無限に遷移
