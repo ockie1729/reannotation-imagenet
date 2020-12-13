@@ -14,8 +14,7 @@ function showClock() {
 }
 setInterval('showClock()', 500);
 
-$('#entrance_timer').ready(function() {
-
+$(document).on('turbolinks:load', function() {
     $.ajax({
       type: "get",
       url: '/competitions/next',

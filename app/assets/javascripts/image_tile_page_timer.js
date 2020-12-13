@@ -34,13 +34,8 @@ var fetchRunningCompetitionInfo = function() {
       complete: function() {
       }
     });
-});
+};
 
-if (
-  document.readyState === "complete" ||
-  (document.readyState !== "loading" && !document.documentElement.doScroll)
-) {
+$(document).on('turbolinks:load', function() {
   fetchRunningCompetitionInfo();
-} else {
-  document.addEventListener("DOMComtentLoaded", fetchRunningCompetitionInfo);
-}
+});
