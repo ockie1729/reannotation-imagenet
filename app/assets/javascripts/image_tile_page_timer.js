@@ -6,7 +6,7 @@ function showImageTilePageTimer() {
 
   // コンペが終わっていたら，ページを再読込
   if (remainingTime < 0) {
-      location.reload();
+      location.href = '/';
   }
 
   var hours = Math.floor(remainingTime/3600);
