@@ -19,11 +19,6 @@ user3 = User.new(name: "okimoto",
                  password: "password")
 user3.save!
 
-user4 = User.new(name: "saeki",
-                 email: "saeki@cv.com",
-                 password: "password")
-user2.save!
-
 # ImageClass
 puts "saving image class..."
 
@@ -42,7 +37,7 @@ end
 puts "saving image cluster..."
 
 # class1に紐づくものを99作る
-99.times do
+100.times do
   image_cluster = ImageCluster.new({image_class_id: 1})
   image_cluster.save!
 end
